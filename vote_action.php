@@ -12,9 +12,10 @@ if (!empty($_SESSION["user"])) {
 
     if ($rslt->num_rows > 0) {
         if (!empty($_POST['upvote'])) {
-            $qry="UPDATE votes SET num = 1 WHERE answers_id= '$ans_id' AND created_by= ". $user['id']." ";
+            $qry = "delete from votes where num = -1 AND answers_id= '$ans_id' AND created_by= ". $user['id']." ";
+
         } else if (!empty($_POST['downvote'])) {
-            $qry="UPDATE votes SET num = -1 WHERE answers_id= '$ans_id' AND created_by= ". $user['id']." ";
+            $qry = "delete from votes where num = 1 AND answers_id= '$ans_id' AND created_by= ". $user['id']." ";
         }
     } else {
         if (!empty($_POST['upvote'])) {
